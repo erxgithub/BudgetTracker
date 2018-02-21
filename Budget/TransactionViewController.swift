@@ -25,8 +25,10 @@ class TransactionViewControllerclass: UIViewController {
   @IBOutlet weak var datePicker: UIDatePicker!
   
   let dataManager = DataManager()
-  
+
   override func viewDidLoad() {
+    dataManager.initialSetup()
+    
     super.viewDidLoad()
     updateRemainingLabel()
   }

@@ -15,6 +15,7 @@
 		22749E981FD5F07E009B1F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22749E921FD5F07E009B1F2D /* Main.storyboard */; };
 		22749E991FD5F07E009B1F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22749E941FD5F07E009B1F2D /* AppDelegate.swift */; };
 		22749E9A1FD5F07E009B1F2D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22749E951FD5F07E009B1F2D /* Info.plist */; };
+		58C13C0A203CE64D009F0ACF /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C13C09203CE64D009F0ACF /* SQLiteDatabase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		22749E931FD5F07E009B1F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		22749E941FD5F07E009B1F2D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22749E951FD5F07E009B1F2D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58C13C09203CE64D009F0ACF /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		D2A5F2001F4A9144005CD714 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -46,6 +48,7 @@
 				22749E941FD5F07E009B1F2D /* AppDelegate.swift */,
 				221645E72037320A00EB6674 /* TransactionViewController.swift */,
 				221645E92037325D00EB6674 /* DataManager.swift */,
+				58C13C09203CE64D009F0ACF /* SQLiteDatabase.swift */,
 				22749E901FD5F07E009B1F2D /* LaunchScreen.xib */,
 				22749E911FD5F07E009B1F2D /* Assets.xcassets */,
 				22749E921FD5F07E009B1F2D /* Main.storyboard */,
@@ -149,6 +152,7 @@
 			files = (
 				22749E991FD5F07E009B1F2D /* AppDelegate.swift in Sources */,
 				221645EA2037325D00EB6674 /* DataManager.swift in Sources */,
+				58C13C0A203CE64D009F0ACF /* SQLiteDatabase.swift in Sources */,
 				221645E82037320A00EB6674 /* TransactionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

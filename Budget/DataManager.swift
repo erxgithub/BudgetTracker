@@ -17,18 +17,64 @@
 // THE SOFTWARE.
 
 import UIKit
+import SQLite3
 
 class DataManager: NSObject {
 
   let dailyBudget = NSDecimalNumber(string: "10.00")
   var spent = NSDecimalNumber(string: "0.00")
-  
+
+  let db = SQLiteDatabase()
+
   func budgetRemainingToday() -> NSDecimalNumber {
+    let startOfDay = NSCalendar.current.startOfDay(for: Date())
+    
+    // Components to calculate end of day
+    var components = DateComponents()
+    components.day = 1
+    components.second = -1
+    
+    let endOfDay = NSCalendar.current.date(byAdding: components, to: startOfDay)
+    
+    let query = """
+      SELECT sum(amount) FROM transactions WHERE timestamp >=\(Int(startOfDay.timeIntervalSince1970))
+        AND timestamp >=\(Int(endOfDay!.timeIntervalSince1970));
+    """
+    
+    let result = db.execute(complexQuery: query)
+    print(result)
+    
     return dailyBudget.subtracting(spent)
   }
   
   func spend(amount: NSDecimalNumber, time: Date) {
     spent = spent.adding(amount)
+    
+    let query = """
+      INSERT INTO transactions (amount, timestamp) VALUES
+        (\(Int(truncating: amount)), \(Int(Date().timeIntervalSince1970)));
+    """
+    
+    try? db.execute(simpleQuery: query)
   }
   
+  func initialSetup() {
+    try? db.openDatabase(name: "budget.db")
+
+    let query = """
+      CREATE TABLE transactions (
+        id INTEGER PRIMARY KEY,
+        amount INTEGER,
+        timestamp INTEGER
+      );
+
+      CREATE TABLE daily_budgets (
+        id INTEGER PRIMARY KEY,
+        amount INTEGER
+      );
+    """
+    
+    try? db.execute(simpleQuery: query)
+  }
+
 }
