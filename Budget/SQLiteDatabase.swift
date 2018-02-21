@@ -56,7 +56,7 @@ class SQLiteDatabase: NSObject {
     }
   }
   
-  func execute(complexQuery query: String) throws -> [[String: String]] {
+  func execute(complexQuery query: String) throws -> [[String: Any]] {
     var queryStatement: OpaquePointer? = nil
     guard sqlite3_prepare_v2(database, query, -1, &queryStatement, nil) == SQLITE_OK else {
       throw SQLiteError.prepare
@@ -65,15 +65,22 @@ class SQLiteDatabase: NSObject {
     var stepStatus = sqlite3_step(queryStatement)
     let numberOfColumns = sqlite3_column_count(queryStatement)
     
-    var rows = [[String: String]]()
+    var rows = [[String: Any]]()
     
     while(stepStatus == SQLITE_ROW) {
-      var row = [String: String]()
+      var row = [String: Any]()
       
       for i in 0..<numberOfColumns {
         let columnName = String(cString: sqlite3_column_name(queryStatement, Int32(i)))
-        let columnText = String(cString: sqlite3_column_text(queryStatement, Int32(i)))
-        row[columnName] = columnText
+        let columnType = sqlite3_column_type(queryStatement, Int32(i))
+
+        if columnType == SQLITE_INTEGER {
+          row[columnName] = sqlite3_column_int(queryStatement, Int32(i))
+        } else if columnType == SQLITE_TEXT {
+          row[columnName] = String(cString: sqlite3_column_text(queryStatement, Int32(i)))
+        } else {
+          row[columnName] = nil
+        }
       }
       
       rows.append(row)

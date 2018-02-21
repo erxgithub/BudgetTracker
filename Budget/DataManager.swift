@@ -37,14 +37,19 @@ class DataManager: NSObject {
     let endOfDay = NSCalendar.current.date(byAdding: components, to: startOfDay)
     
     let query = """
-      SELECT sum(amount) FROM transactions WHERE timestamp >=\(Int(startOfDay.timeIntervalSince1970))
-        AND timestamp >=\(Int(endOfDay!.timeIntervalSince1970));
+      SELECT SUM(amount) AS total FROM transactions WHERE timestamp >=\(Int(startOfDay.timeIntervalSince1970))
+        AND timestamp <=\(Int(endOfDay!.timeIntervalSince1970));
     """
+
+    var total = NSDecimalNumber(string: "0.00")
+
+    if let result = try? db.execute(complexQuery: query) {
+      if result[0]["total"] != nil {
+        total = NSDecimalNumber(string: "\(result[0]["total"]!)")
+      }
+    }
     
-    let result = db.execute(complexQuery: query)
-    print(result)
-    
-    return dailyBudget.subtracting(spent)
+    return dailyBudget.subtracting(total)
   }
   
   func spend(amount: NSDecimalNumber, time: Date) {
