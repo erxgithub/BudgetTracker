@@ -25,7 +25,7 @@ class TransactionViewControllerclass: UIViewController {
   @IBOutlet weak var datePicker: UIDatePicker!
   
   let dataManager = DataManager()
-
+  
   override func viewDidLoad() {
     dataManager.initialSetup()
     
@@ -52,5 +52,11 @@ class TransactionViewControllerclass: UIViewController {
     updateRemainingLabel()
   }
   
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showAllTransactions" {
+      let controller = segue.destination as! AllTransactionsViewController
+      controller.dataManager = dataManager
+    }
+  }
 }
 

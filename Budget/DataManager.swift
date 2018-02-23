@@ -81,5 +81,18 @@ class DataManager: NSObject {
     
     try? db.execute(simpleQuery: query)
   }
+  
+  func getAllTransactions() -> [[String: Any]] {
+    let query = """
+      SELECT * FROM transactions ORDER BY timestamp DESC, amount DESC;
+    """
+    // select timestamp, strftime('%Y/%m/%d', datetime(timestamp, 'unixepoch')) from transactions;
+    
+    if let result = try? db.execute(complexQuery: query) {
+      return result
+    } else {
+      return [[:]]
+    }
+  }
 
 }

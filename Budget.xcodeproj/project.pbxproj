@@ -15,7 +15,9 @@
 		22749E981FD5F07E009B1F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22749E921FD5F07E009B1F2D /* Main.storyboard */; };
 		22749E991FD5F07E009B1F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22749E941FD5F07E009B1F2D /* AppDelegate.swift */; };
 		22749E9A1FD5F07E009B1F2D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22749E951FD5F07E009B1F2D /* Info.plist */; };
+		5868707F203F8A57007F498F /* AllTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5868707E203F8A57007F498F /* AllTransactionsViewController.swift */; };
 		58C13C0A203CE64D009F0ACF /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C13C09203CE64D009F0ACF /* SQLiteDatabase.swift */; };
+		58DF7A112040B5790020A321 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DF7A102040B5790020A321 /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +29,9 @@
 		22749E931FD5F07E009B1F2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		22749E941FD5F07E009B1F2D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22749E951FD5F07E009B1F2D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5868707E203F8A57007F498F /* AllTransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTransactionsViewController.swift; sourceTree = "<group>"; };
 		58C13C09203CE64D009F0ACF /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
+		58DF7A102040B5790020A321 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		D2A5F2001F4A9144005CD714 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -47,6 +51,8 @@
 			children = (
 				22749E941FD5F07E009B1F2D /* AppDelegate.swift */,
 				221645E72037320A00EB6674 /* TransactionViewController.swift */,
+				5868707E203F8A57007F498F /* AllTransactionsViewController.swift */,
+				58DF7A102040B5790020A321 /* CustomTableViewCell.swift */,
 				221645E92037325D00EB6674 /* DataManager.swift */,
 				58C13C09203CE64D009F0ACF /* SQLiteDatabase.swift */,
 				22749E901FD5F07E009B1F2D /* LaunchScreen.xib */,
@@ -150,6 +156,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58DF7A112040B5790020A321 /* CustomTableViewCell.swift in Sources */,
+				5868707F203F8A57007F498F /* AllTransactionsViewController.swift in Sources */,
 				22749E991FD5F07E009B1F2D /* AppDelegate.swift in Sources */,
 				221645EA2037325D00EB6674 /* DataManager.swift in Sources */,
 				58C13C0A203CE64D009F0ACF /* SQLiteDatabase.swift in Sources */,
