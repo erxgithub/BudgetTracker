@@ -25,7 +25,8 @@ class TransactionViewControllerclass: UIViewController {
   @IBOutlet weak var datePicker: UIDatePicker!
   
   let dataManager = DataManager()
-  
+  var data: [[String: Any]]?
+
   override func viewDidLoad() {
     dataManager.initialSetup()
     
@@ -50,12 +51,20 @@ class TransactionViewControllerclass: UIViewController {
     
     dataManager.spend(amount: amount, time: time)
     updateRemainingLabel()
+    amountSpentTextField.text = ""
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showAllTransactions" {
-      let controller = segue.destination as! AllTransactionsViewController
-      controller.dataManager = dataManager
+      data = dataManager.getAllTransactions()
+      let controller = segue.destination as! DetailViewController
+      //controller.dataManager = dataManager
+      controller.data = data
+    } else if segue.identifier == "showDayTransactions" {
+      data = dataManager.getDayTransactions(transactionDate: datePicker.date)
+      let controller = segue.destination as! DetailViewController
+      //controller.dataManager = dataManager
+      controller.data = data
     }
   }
 }

@@ -84,9 +84,29 @@ class DataManager: NSObject {
   
   func getAllTransactions() -> [[String: Any]] {
     let query = """
-      SELECT * FROM transactions ORDER BY timestamp DESC, amount DESC;
+      SELECT amount, timestamp, strftime('%Y/%m/%d', datetime(timestamp, 'unixepoch')) AS datestamp FROM transactions ORDER BY datestamp DESC, amount DESC;
     """
-    // select timestamp, strftime('%Y/%m/%d', datetime(timestamp, 'unixepoch')) from transactions;
+    
+    if let result = try? db.execute(complexQuery: query) {
+      return result
+    } else {
+      return [[:]]
+    }
+  }
+  
+  func getDayTransactions(transactionDate: Date) -> [[String: Any]] {
+    let startOfDay = NSCalendar.current.startOfDay(for: transactionDate)
+    
+    // Components to calculate end of day
+    var components = DateComponents()
+    components.day = 1
+    components.second = -1
+    
+    let endOfDay = NSCalendar.current.date(byAdding: components, to: startOfDay)
+    
+    let query = """
+    SELECT amount, timestamp, strftime('%Y/%m/%d', datetime(timestamp, 'unixepoch')) AS datestamp FROM transactions WHERE timestamp >=\(Int(startOfDay.timeIntervalSince1970)) AND timestamp <=\(Int(endOfDay!.timeIntervalSince1970)) ORDER BY datestamp DESC, amount DESC;
+    """
     
     if let result = try? db.execute(complexQuery: query) {
       return result
